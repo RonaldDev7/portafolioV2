@@ -163,8 +163,12 @@ export default function Hero() {
                                 Ver proyectos <ArrowRight />
                             </BtnPrimary>
 
-                            <BtnOutline href="#">
-                                <DownloadIcon /> Descargar CV
+                            <BtnOutline
+                                href="/RonaldAlvarezCV.pdf"
+                                download
+                            >
+                                <DownloadIcon />
+                                Descargar CV
                             </BtnOutline>
                         </div>
 
