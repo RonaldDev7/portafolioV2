@@ -14,6 +14,9 @@ import { useState } from "react";
 export default function FeaturedProject({ project }: { project: Project }) {
     const { ref, visible } = useInView();
     const [hover, setHover] = useState(false);
+
+    const isMobile = window.innerWidth < 900;
+
     return (
         <div
             ref={ref}
@@ -29,7 +32,9 @@ export default function FeaturedProject({ project }: { project: Project }) {
                     borderRadius: 20,
                     border: `1px solid ${hover ? "rgba(59,130,246,0.3)" : COLORS.border}`,
                     background: COLORS.surface,
-                    padding: "48px 48px 48px",
+                    padding: isMobile
+                        ? "28px"
+                        : "48px",
                     overflow: "hidden",
                     transition: "border-color 0.4s",
                 }}
@@ -74,8 +79,11 @@ export default function FeaturedProject({ project }: { project: Project }) {
                 <div
                     style={{
                         display: "grid",
-                        gridTemplateColumns: "1.2fr 1fr",
-                        gap: 40,
+                        gridTemplateColumns: isMobile
+                            ? "1fr"
+                            : "1.2fr 1fr",
+
+                        gap: isMobile ? 24 : 40,
                         alignItems: "center",
                     }}
                 >
@@ -189,7 +197,7 @@ export default function FeaturedProject({ project }: { project: Project }) {
                             alt={project.name}
                             style={{
                                 width: "100%",
-                                height: 320,
+                                height: isMobile ? 220 : 320,
                                 objectFit: "cover",
                                 display: "block",
                                 transform: hover ? "scale(1.03)" : "scale(1)",

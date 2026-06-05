@@ -16,6 +16,12 @@ export default function BtnOutline({
     return (
         <a
             href={href}
+            target={
+                href.startsWith("http")
+                    ? "_blank"
+                    : undefined
+            }
+            rel="noopener noreferrer"
             download={download}
             style={{
                 display: "inline-flex",

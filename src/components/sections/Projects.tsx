@@ -12,6 +12,9 @@ export default function Projects() {
     const { ref, visible } = useInView();
     const featured = projects.find(p => p.featured);
     const others = projects.filter(p => !p.featured);
+
+    const isMobile = window.innerWidth < 900;
+    
     return (
         <section id="projects" style={{ padding: "0 0 96px" }}>
             <Divider />
@@ -29,7 +32,15 @@ export default function Projects() {
                 {others.length > 0 && (
                     <>
                         <p style={{ fontSize: 11, fontFamily: "monospace", color: COLORS.textMuted, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>Otros proyectos</p>
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 16 }}>
+                        <div
+                            style={{
+                                display: "grid",
+                                gridTemplateColumns: isMobile
+                                    ? "1fr"
+                                    : "repeat(2,1fr)",
+                                gap: 16,
+                            }}
+                        >
                             {others.map((p, i) => <ProjectCard key={p.id} project={p} delay={i * 100} visible={visible} />)}
                         </div>
                     </>

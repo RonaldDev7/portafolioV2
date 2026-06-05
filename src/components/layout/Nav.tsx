@@ -9,6 +9,8 @@ export default function Nav() {
         return () => window.removeEventListener("scroll", h);
     }, []);
 
+    const isMobile = window.innerWidth < 700;
+
     return (
         <header style={{
             position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
@@ -43,15 +45,26 @@ export default function Nav() {
                 >
                     ra<span style={{ color: COLORS.primary }}>.</span>dev
                 </a>
-                <nav style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                <nav
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: isMobile ? 0 : 4,
+                    }}
+                >
                     {[["Sobre mí", "#about"], ["Proyectos", "#projects"], ["Contacto", "#contact"]].map(([label, href]) => (
                         <a
                             key={href}
                             href={href}
                             style={{
                                 textDecoration: "none",
-                                padding: "6px 12px",
-                                fontSize: 13,
+                                padding: isMobile
+                                    ? "6px 8px"
+                                    : "6px 12px",
+
+                                fontSize: isMobile
+                                    ? 12
+                                    : 13,
 
                                 color: COLORS.text,
                                 opacity: 0.75,

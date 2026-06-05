@@ -32,7 +32,9 @@ export default function Hero() {
             {/* Background glow */}
             <div style={{
                 position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
-                width: 700, height: 400, pointerEvents: "none",
+                width: "100%",
+                maxWidth: 700,
+                height: 400, pointerEvents: "none",
                 background: "radial-gradient(ellipse at center top, rgba(59,130,246,0.12) 0%, transparent 70%)",
             }} />
             {/* Grid */}

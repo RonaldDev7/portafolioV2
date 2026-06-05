@@ -14,6 +14,12 @@ export default function BtnPrimary({
     return (
         <a
             href={href}
+            target={
+                href.startsWith("http")
+                    ? "_blank"
+                    : undefined
+            }
+            rel="noopener noreferrer"
             style={{
                 display: "inline-flex",
                 alignItems: "center",
