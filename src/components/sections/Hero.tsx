@@ -17,7 +17,17 @@ export default function Hero() {
     const [photoHover, setPhotoHover] = useState(false);
     const [mounted, setMounted] = useState(false);
 
-    const isMobile = window.innerWidth < 900;
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
+
+    useEffect(() => {
+        const handleResize = () =>
+            setIsMobile(window.innerWidth < 900);
+
+        window.addEventListener("resize", handleResize);
+
+        return () =>
+            window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => { setTimeout(() => setMounted(true), 100); }, []);
 
@@ -347,40 +357,45 @@ export default function Hero() {
                 </div>
             </div>
             {/* Scroll indicator */}
-            <div style={{
-                position: "absolute",
-                bottom: 48,
-                left: "50%",
-                transform: "translateX(-50%)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 8,
-                opacity: mounted ? 0.75 : 0,
-                transition: "opacity 1s ease 1s",
-            }}>
-                <span
-                    style={{
-                        fontSize: 11,
-                        fontFamily: "monospace",
-                        color: COLORS.textSecondary,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.18em",
-                        textShadow: "0 0 10px rgba(59,130,246,0.35)",
-                    }}
-                >
-                    scroll
-                </span>
+            {!isMobile && (
                 <div
                     style={{
-                        width: 1,
-                        height: 40,
-                        background:
-                            "linear-gradient(to bottom, rgba(59,130,246,0.8), transparent)",
-                        boxShadow: "0 0 12px rgba(59,130,246,0.5)",
+                        position: "absolute",
+                        bottom: 48,
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: 8,
+                        opacity: mounted ? 0.75 : 0,
+                        transition: "opacity 1s ease 1s",
                     }}
-                />
-            </div>
+                >
+                    <span
+                        style={{
+                            fontSize: 11,
+                            fontFamily: "monospace",
+                            color: COLORS.textSecondary,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.18em",
+                            textShadow: "0 0 10px rgba(59,130,246,0.35)",
+                        }}
+                    >
+                        scroll
+                    </span>
+
+                    <div
+                        style={{
+                            width: 1,
+                            height: 40,
+                            background:
+                                "linear-gradient(to bottom, rgba(59,130,246,0.8), transparent)",
+                            boxShadow: "0 0 12px rgba(59,130,246,0.5)",
+                        }}
+                    />
+                </div>
+            )}
         </section>
     );
 }
