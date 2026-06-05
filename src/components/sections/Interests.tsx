@@ -43,7 +43,6 @@ export default function Interests() {
                 >
                     {[
                         "Aplicaciones de productividad",
-                        "Tableros infinitos",
                         "Interfaces drag & drop",
                         "Herramientas colaborativas",
                         "Productos SaaS",

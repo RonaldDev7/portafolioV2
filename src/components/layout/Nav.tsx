@@ -31,7 +31,7 @@ export default function Nav() {
                 }}
             >
                 <a
-                    href="#"
+                    href="#hero"
                     style={{
                         textDecoration: "none",
                         fontFamily: "monospace",
